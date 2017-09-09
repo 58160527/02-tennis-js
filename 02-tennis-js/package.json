@@ -4,11 +4,14 @@
   "description": "",
   "main": "tennis.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "chai": "^4.1.2"
   }
 }
