@@ -1,37 +1,114 @@
 function TennisGame() {
     const scoreString = ['Love', 'Fifteen', 'Thirty', 'Forthy']
     this.playerAScore = 0
+    this.playerBScore = 0
 
     this.reset = () => {
         this.playerAScore = 0
+        this.playerBScore = 0
     }
 
     this.echo = () => {
-       return `${scoreString[this.playerAScore]} - Love`
+       return `${scoreString[this.playerAScore]} - ${scoreString[this.playerBScore]}`
+
     }
 
-    this.playerAGteScore = () => {
+
+
+    this.playerAGetScore = () => {
         this.playerAScore++
+    }
+
+    this.playerBGetScore = () =>{
+      this.playerBScore++
     }
 }
 
-test('Echo "Love - Love" when game start', () => {
+
+describe('echo()',() =>{
+  let app
+
+  beforeEach(() => {
+    app = new TennisGame()
+    app.reset()
+  })
+
+  test('Echo "Love - Love" when game start', () => {
+      // Arrange
+        //let app = new TennisGame()
+
+      // Act
+        //app.reset()
+      let result = app.echo()
+
+      // Assert
+      expect(result).toBe('Love - Love')
+  })
+
+  // A Zone
+
+  test('Echo "Fifteen - Love" when playerA get first score', () => {
+      // Arrange
+        //let app = new TennisGame()
+        //app.reset()
+      app.playerAGetScore()
+
+      // Act
+      let result = app.echo()
+
+      // Assert
+      expect(result).toBe('Fifteen - Love')
+  })
+
+  // B Zone
+  test('Echo "Love - Fifteen" when playerB get first score', () => {
+      // Arrange
+        //let app = new TennisGame()
+        //app.reset()
+      app.playerBGetScore()
+
+      // Act
+      let result = app.echo()
+
+      // Assert
+      expect(result).toBe('Love - Fifteen')
+  })
+
+  test('Echo "Thirty - Fifteen" when score is 30 - 15', () => {
+      // Arrange
+        //let app = new TennisGame()
+        //app.reset()
+      app.playerAGetScore()
+      app.playerAGetScore()
+      app.playerBGetScore()
+
+      // Act
+      let result = app.echo()
+
+      // Assert
+      expect(result).toBe('Thirty - Fifteen')
+  })
+})
+
+/*test('Echo "Love - Love" when game start', () => {
     // Arrange
-    let app = new TennisGame()
+//    let app = new TennisGame()
 
     // Act
-    app.reset()
+   app.reset()
     let result = app.echo()
 
     // Assert
     expect(result).toBe('Love - Love')
 })
 
+// A Zone
+
 test('Echo "Fifteen - Love" when playerA get first score', () => {
     // Arrange
     let app = new TennisGame()
     app.reset()
-    app.playerAGteScore()
+    app.playerAGetScore()
 
     // Act
     let result = app.echo()
@@ -39,3 +116,32 @@ test('Echo "Fifteen - Love" when playerA get first score', () => {
     // Assert
     expect(result).toBe('Fifteen - Love')
 })
+
+// B Zone
+test('Echo "Love - Fifteen" when playerB get first score', () => {
+    // Arrange
+    let app = new TennisGame()
+    app.reset()
+    app.playerBGetScore()
+
+    // Act
+    let result = app.echo()
+
+    // Assert
+    expect(result).toBe('Love - Fifteen')
+})
+
+test('Echo "Thirty - Fifteen" when score is 30 - 15', () => {
+    // Arrange
+    let app = new TennisGame()
+    app.reset()
+    app.playerAGetScore()
+    app.playerAGetScore()
+    app.playerBGetScore()
+
+    // Act
+    let result = app.echo()
+
+    // Assert
+    expect(result).toBe('Thirty - Fifteen')
+})*/
